@@ -1,0 +1,9 @@
+Code for a Robot, which pours some drink (vodka, for instance).
+
+v0.0.1:
+	-simple drink pouring in 4 cups
+	-stop button active
+	-single pump
+	-adjustable volume pouring
+
+Elecric parts need modifications, so coding is now stopped until holidays

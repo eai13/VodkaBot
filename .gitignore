@@ -1,0 +1,12 @@
+*.atsln
+*.atsuo
+*.cppproj
+*.d
+*.eep
+*.elf
+*.lss
+*.map
+*.o
+*.srec
+Makefile
+*.mk

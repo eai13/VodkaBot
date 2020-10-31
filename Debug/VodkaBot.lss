@@ -1,0 +1,1617 @@
+
+VodkaMachine(0.1.0).elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000084e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  0000084e  000008e2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000001a  0080006c  0080006c  000008ee  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000008ee  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000040  00000000  00000000  0000091e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000009a5  00000000  00000000  0000095e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000002ee  00000000  00000000  00001303  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002f6  00000000  00000000  000015f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000f8  00000000  00000000  000018e8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000539  00000000  00000000  000019e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000004f1  00000000  00000000  00001f19  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000f8  00000000  00000000  0000240a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__vector_4>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 ea 02 	jmp	0x5d4	; 0x5d4 <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e4       	ldi	r30, 0x4E	; 78
+  68:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 36       	cpi	r26, 0x6C	; 108
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	ac e6       	ldi	r26, 0x6C	; 108
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a6 38       	cpi	r26, 0x86	; 134
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 2f 03 	call	0x65e	; 0x65e <main>
+  8a:	0c 94 25 04 	jmp	0x84a	; 0x84a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <__vector_4>:
+// Encoder works through the states
+// In order to increment the fluid volume value, it should pass through
+// State 0 -> State Increment 1 -> State Increment 2 -> State Increment 3 -> State 0
+// In order to decrement the fluid volume value, it should pass through
+// State 0 -> State Decrement 1 -> State Decrement 2 -> State Decrement 3 -> State 0
+ISR(TIMER2_OVF_vect){
+  92:	1f 92       	push	r1
+  94:	0f 92       	push	r0
+  96:	0f b6       	in	r0, 0x3f	; 63
+  98:	0f 92       	push	r0
+  9a:	11 24       	eor	r1, r1
+  9c:	cf 92       	push	r12
+  9e:	df 92       	push	r13
+  a0:	ef 92       	push	r14
+  a2:	ff 92       	push	r15
+  a4:	0f 93       	push	r16
+  a6:	1f 93       	push	r17
+  a8:	2f 93       	push	r18
+  aa:	3f 93       	push	r19
+  ac:	4f 93       	push	r20
+  ae:	5f 93       	push	r21
+  b0:	6f 93       	push	r22
+  b2:	7f 93       	push	r23
+  b4:	8f 93       	push	r24
+  b6:	9f 93       	push	r25
+  b8:	af 93       	push	r26
+  ba:	bf 93       	push	r27
+  bc:	cf 93       	push	r28
+  be:	df 93       	push	r29
+  c0:	ef 93       	push	r30
+  c2:	ff 93       	push	r31
+  c4:	e7 e7       	ldi	r30, 0x77	; 119
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	82 e0       	ldi	r24, 0x02	; 2
+  ca:	90 e0       	ldi	r25, 0x00	; 0
+				positionEmpty[i - 2] = 0;
+			}
+			// If there is no cup in position
+			else if (PIND & (1 << i)){
+				// Setting the positionEmpty flag to 1
+				positionEmpty[i - 2] = 1;
+  cc:	41 e0       	ldi	r20, 0x01	; 1
+	uint8_t cupFilled[4];
+	// Sets the empty and filled arrays
+	void CheckPresenceAndFillness(void){
+		for (uint8_t i = CUP1_In; i < (CUP4_In + 1); i++){
+			// If there is cup in position
+			if (!(PIND & (1 << i))){
+  ce:	20 b3       	in	r18, 0x10	; 16
+  d0:	30 e0       	ldi	r19, 0x00	; 0
+  d2:	08 2e       	mov	r0, r24
+  d4:	02 c0       	rjmp	.+4      	; 0xda <__vector_4+0x48>
+  d6:	35 95       	asr	r19
+  d8:	27 95       	ror	r18
+  da:	0a 94       	dec	r0
+  dc:	e2 f7       	brpl	.-8      	; 0xd6 <__vector_4+0x44>
+  de:	20 fd       	sbrc	r18, 0
+  e0:	02 c0       	rjmp	.+4      	; 0xe6 <__vector_4+0x54>
+				// Setting the positionEmpty flag to 0
+				positionEmpty[i - 2] = 0;
+  e2:	10 82       	st	Z, r1
+  e4:	10 c0       	rjmp	.+32     	; 0x106 <__vector_4+0x74>
+			}
+			// If there is no cup in position
+			else if (PIND & (1 << i)){
+  e6:	20 b3       	in	r18, 0x10	; 16
+  e8:	30 e0       	ldi	r19, 0x00	; 0
+  ea:	08 2e       	mov	r0, r24
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <__vector_4+0x60>
+  ee:	35 95       	asr	r19
+  f0:	27 95       	ror	r18
+  f2:	0a 94       	dec	r0
+  f4:	e2 f7       	brpl	.-8      	; 0xee <__vector_4+0x5c>
+  f6:	20 ff       	sbrs	r18, 0
+  f8:	06 c0       	rjmp	.+12     	; 0x106 <__vector_4+0x74>
+				// Setting the positionEmpty flag to 1
+				positionEmpty[i - 2] = 1;
+  fa:	40 83       	st	Z, r20
+  fc:	dc 01       	movw	r26, r24
+  fe:	a9 58       	subi	r26, 0x89	; 137
+ 100:	bf 4f       	sbci	r27, 0xFF	; 255
+				cupFilled[i - 2] = 0;
+ 102:	12 96       	adiw	r26, 0x02	; 2
+ 104:	1c 92       	st	X, r1
+ 106:	01 96       	adiw	r24, 0x01	; 1
+ 108:	31 96       	adiw	r30, 0x01	; 1
+	uint8_t positionEmpty[4];
+	// 1 is for filled, 0 is for not filled
+	uint8_t cupFilled[4];
+	// Sets the empty and filled arrays
+	void CheckPresenceAndFillness(void){
+		for (uint8_t i = CUP1_In; i < (CUP4_In + 1); i++){
+ 10a:	86 30       	cpi	r24, 0x06	; 6
+ 10c:	91 05       	cpc	r25, r1
+ 10e:	f9 f6       	brne	.-66     	; 0xce <__vector_4+0x3c>
+ 110:	a3 e7       	ldi	r26, 0x73	; 115
+ 112:	b0 e0       	ldi	r27, 0x00	; 0
+ 114:	ef e6       	ldi	r30, 0x6F	; 111
+ 116:	f0 e0       	ldi	r31, 0x00	; 0
+ 118:	6b e7       	ldi	r22, 0x7B	; 123
+ 11a:	70 e0       	ldi	r23, 0x00	; 0
+ 11c:	0f 2e       	mov	r0, r31
+ 11e:	f7 e7       	ldi	r31, 0x77	; 119
+ 120:	cf 2e       	mov	r12, r31
+ 122:	f0 e0       	ldi	r31, 0x00	; 0
+ 124:	df 2e       	mov	r13, r31
+ 126:	f0 2d       	mov	r31, r0
+ 128:	81 e0       	ldi	r24, 0x01	; 1
+ 12a:	90 e0       	ldi	r25, 0x00	; 0
+ 12c:	20 e0       	ldi	r18, 0x00	; 0
+ 12e:	30 e0       	ldi	r19, 0x00	; 0
+	}
+	// Funciton for resetting the PUTLED, number counts from 0 to 3
+	void resetPutLED(uint8_t putLEDnumber){
+		// Setting the putLED to 0
+		putLED[putLEDnumber] = 0;
+		PORTA &= ~(1 << (putLEDnumber * 2 + 1));
+ 130:	41 e0       	ldi	r20, 0x01	; 1
+ 132:	50 e0       	ldi	r21, 0x00	; 0
+	// LEDREADY	states, 1 is for on, 0 is for off
+	uint8_t readyLED[4];
+	// Function for setting the PUTLED, number counts from 0 to 3
+	void setPutLED(uint8_t putLEDnumber){
+		// Setting the putLED to 1
+		putLED[putLEDnumber] = 1;
+ 134:	ff 24       	eor	r15, r15
+ 136:	f3 94       	inc	r15
+	// and the flag turns to zero, which means, the position is empty
+	// If the cup is put in position, the led is shut
+	// and the flag turns to unity, which means, the position is filled
+	Cups.CheckPresenceAndFillness();
+	for (uint8_t i = 0; i < 4; i++){
+		if (Cups.positionEmpty[i]){
+ 138:	e6 01       	movw	r28, r12
+ 13a:	19 91       	ld	r17, Y+
+ 13c:	6e 01       	movw	r12, r28
+ 13e:	11 23       	and	r17, r17
+ 140:	61 f0       	breq	.+24     	; 0x15a <__vector_4+0xc8>
+	// LEDREADY	states, 1 is for on, 0 is for off
+	uint8_t readyLED[4];
+	// Function for setting the PUTLED, number counts from 0 to 3
+	void setPutLED(uint8_t putLEDnumber){
+		// Setting the putLED to 1
+		putLED[putLEDnumber] = 1;
+ 142:	f0 82       	st	Z, r15
+		PORTA |= (1 << (putLEDnumber * 2 + 1));
+ 144:	eb b2       	in	r14, 0x1b	; 27
+ 146:	8a 01       	movw	r16, r20
+ 148:	08 2e       	mov	r0, r24
+ 14a:	02 c0       	rjmp	.+4      	; 0x150 <__vector_4+0xbe>
+ 14c:	00 0f       	add	r16, r16
+ 14e:	11 1f       	adc	r17, r17
+ 150:	0a 94       	dec	r0
+ 152:	e2 f7       	brpl	.-8      	; 0x14c <__vector_4+0xba>
+ 154:	0e 29       	or	r16, r14
+ 156:	0b bb       	out	0x1b, r16	; 27
+ 158:	0c c0       	rjmp	.+24     	; 0x172 <__vector_4+0xe0>
+	}
+	// Funciton for resetting the PUTLED, number counts from 0 to 3
+	void resetPutLED(uint8_t putLEDnumber){
+		// Setting the putLED to 0
+		putLED[putLEDnumber] = 0;
+ 15a:	10 82       	st	Z, r1
+		PORTA &= ~(1 << (putLEDnumber * 2 + 1));
+ 15c:	eb b2       	in	r14, 0x1b	; 27
+ 15e:	8a 01       	movw	r16, r20
+ 160:	08 2e       	mov	r0, r24
+ 162:	02 c0       	rjmp	.+4      	; 0x168 <__vector_4+0xd6>
+ 164:	00 0f       	add	r16, r16
+ 166:	11 1f       	adc	r17, r17
+ 168:	0a 94       	dec	r0
+ 16a:	e2 f7       	brpl	.-8      	; 0x164 <__vector_4+0xd2>
+ 16c:	00 95       	com	r16
+ 16e:	0e 21       	and	r16, r14
+ 170:	0b bb       	out	0x1b, r16	; 27
+			LEDs.setPutLED(i);
+		}
+		else{
+			LEDs.resetPutLED(i);
+		}
+		if (Cups.cupFilled[i]){
+ 172:	eb 01       	movw	r28, r22
+ 174:	19 91       	ld	r17, Y+
+ 176:	be 01       	movw	r22, r28
+ 178:	11 23       	and	r17, r17
+ 17a:	61 f0       	breq	.+24     	; 0x194 <__vector_4+0x102>
+		PORTA &= ~(1 << (putLEDnumber * 2 + 1));
+	}
+	// Function for setting the READYLED, number counts from 0 to 3
+	void setReadyLED(uint8_t readyLEDnumber){
+		// Setting the readyLED to 1
+		readyLED[readyLEDnumber] = 1;
+ 17c:	fc 92       	st	X, r15
+		PORTA |= (1 << (readyLEDnumber) * 2);
+ 17e:	eb b2       	in	r14, 0x1b	; 27
+ 180:	8a 01       	movw	r16, r20
+ 182:	02 2e       	mov	r0, r18
+ 184:	02 c0       	rjmp	.+4      	; 0x18a <__vector_4+0xf8>
+ 186:	00 0f       	add	r16, r16
+ 188:	11 1f       	adc	r17, r17
+ 18a:	0a 94       	dec	r0
+ 18c:	e2 f7       	brpl	.-8      	; 0x186 <__vector_4+0xf4>
+ 18e:	0e 29       	or	r16, r14
+ 190:	0b bb       	out	0x1b, r16	; 27
+ 192:	0c c0       	rjmp	.+24     	; 0x1ac <__vector_4+0x11a>
+	}
+	// Function for resetting the READYLED, number counts from 0 to 3
+	void resetReadyLED(uint8_t readyLEDnumber){
+		// Setting the readyLED to 0
+		readyLED[readyLEDnumber] = 0;
+ 194:	1c 92       	st	X, r1
+		PORTA &= ~(1 << (readyLEDnumber * 2));
+ 196:	eb b2       	in	r14, 0x1b	; 27
+ 198:	8a 01       	movw	r16, r20
+ 19a:	02 2e       	mov	r0, r18
+ 19c:	02 c0       	rjmp	.+4      	; 0x1a2 <__vector_4+0x110>
+ 19e:	00 0f       	add	r16, r16
+ 1a0:	11 1f       	adc	r17, r17
+ 1a2:	0a 94       	dec	r0
+ 1a4:	e2 f7       	brpl	.-8      	; 0x19e <__vector_4+0x10c>
+ 1a6:	00 95       	com	r16
+ 1a8:	0e 21       	and	r16, r14
+ 1aa:	0b bb       	out	0x1b, r16	; 27
+ 1ac:	11 96       	adiw	r26, 0x01	; 1
+ 1ae:	31 96       	adiw	r30, 0x01	; 1
+ 1b0:	2e 5f       	subi	r18, 0xFE	; 254
+ 1b2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1b4:	02 96       	adiw	r24, 0x02	; 2
+	// When the position is empty, the led is blue color
+	// and the flag turns to zero, which means, the position is empty
+	// If the cup is put in position, the led is shut
+	// and the flag turns to unity, which means, the position is filled
+	Cups.CheckPresenceAndFillness();
+	for (uint8_t i = 0; i < 4; i++){
+ 1b6:	89 30       	cpi	r24, 0x09	; 9
+ 1b8:	91 05       	cpc	r25, r1
+ 1ba:	09 f0       	breq	.+2      	; 0x1be <__vector_4+0x12c>
+ 1bc:	bd cf       	rjmp	.-134    	; 0x138 <__vector_4+0xa6>
+		else{
+			LEDs.resetReadyLED(i);
+		}
+	}
+	// If the dynamic indication flag is set, then show tens and reset the flag
+	Indicators.ShowNumber(Indicators.dynamicIndicationFlag);
+ 1be:	80 91 6e 00 	lds	r24, 0x006E
+		return (tens * 10 + units);
+	}
+	// Function for representing the current volume in the indicators
+	volatile void ShowNumber(uint8_t numberPosition){
+		// If the number to indicate is tens number
+		if (numberPosition == 0){
+ 1c2:	81 11       	cpse	r24, r1
+ 1c4:	0d c0       	rjmp	.+26     	; 0x1e0 <__vector_4+0x14e>
+			PORTD |= (1 << TENS_Out);
+ 1c6:	97 9a       	sbi	0x12, 7	; 18
+			PORTD &= ~(1 << UNITS_Out);
+ 1c8:	96 98       	cbi	0x12, 6	; 18
+			PORTC =	numbersToShow[tens];
+ 1ca:	e0 91 6c 00 	lds	r30, 0x006C
+ 1ce:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d0:	e0 5a       	subi	r30, 0xA0	; 160
+ 1d2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1d4:	80 81       	ld	r24, Z
+ 1d6:	85 bb       	out	0x15, r24	; 21
+			dynamicIndicationFlag = 1;
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	80 93 6e 00 	sts	0x006E, r24
+ 1de:	0d c0       	rjmp	.+26     	; 0x1fa <__vector_4+0x168>
+		}
+		else if (numberPosition == 1){
+ 1e0:	81 30       	cpi	r24, 0x01	; 1
+ 1e2:	59 f4       	brne	.+22     	; 0x1fa <__vector_4+0x168>
+			PORTD &= ~(1 << TENS_Out);
+ 1e4:	97 98       	cbi	0x12, 7	; 18
+			PORTD |= (1 << UNITS_Out);
+ 1e6:	96 9a       	sbi	0x12, 6	; 18
+			PORTC =	numbersToShow[units];
+ 1e8:	e0 91 6d 00 	lds	r30, 0x006D
+ 1ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ee:	e0 5a       	subi	r30, 0xA0	; 160
+ 1f0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1f2:	80 81       	ld	r24, Z
+ 1f4:	85 bb       	out	0x15, r24	; 21
+			dynamicIndicationFlag = 0;
+ 1f6:	10 92 6e 00 	sts	0x006E, r1
+	}
+	// If the dynamic indication flag is set, then show tens and reset the flag
+	Indicators.ShowNumber(Indicators.dynamicIndicationFlag);
+	// Encoder checking
+	// State 0
+	if ((incrementCount == 0) && (decrementCount == 0)){
+ 1fa:	80 91 85 00 	lds	r24, 0x0085
+ 1fe:	81 11       	cpse	r24, r1
+ 200:	69 c1       	rjmp	.+722    	; 0x4d4 <__stack+0x75>
+ 202:	80 91 84 00 	lds	r24, 0x0084
+ 206:	88 23       	and	r24, r24
+ 208:	09 f4       	brne	.+2      	; 0x20c <__vector_4+0x17a>
+ 20a:	69 c1       	rjmp	.+722    	; 0x4de <__stack+0x7f>
+ 20c:	63 c1       	rjmp	.+710    	; 0x4d4 <__stack+0x75>
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+			incrementCount = 0;
+ 20e:	10 92 85 00 	sts	0x0085, r1
+			incrementCount = 0;
+ 212:	10 92 85 00 	sts	0x0085, r1
+ 216:	c5 c1       	rjmp	.+906    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 1
+		// -> State Increment 1
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+ 218:	80 b3       	in	r24, 0x10	; 16
+ 21a:	90 e0       	ldi	r25, 0x00	; 0
+ 21c:	80 95       	com	r24
+ 21e:	90 95       	com	r25
+ 220:	83 70       	andi	r24, 0x03	; 3
+ 222:	99 27       	eor	r25, r25
+ 224:	01 97       	sbiw	r24, 0x01	; 1
+ 226:	31 f4       	brne	.+12     	; 0x234 <__vector_4+0x1a2>
+			incrementCount = 1;
+ 228:	81 e0       	ldi	r24, 0x01	; 1
+ 22a:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 22e:	10 92 84 00 	sts	0x0084, r1
+ 232:	b7 c1       	rjmp	.+878    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 0
+		// -> State Decrement 1
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+ 234:	80 b3       	in	r24, 0x10	; 16
+ 236:	90 e0       	ldi	r25, 0x00	; 0
+ 238:	80 95       	com	r24
+ 23a:	90 95       	com	r25
+ 23c:	83 70       	andi	r24, 0x03	; 3
+ 23e:	99 27       	eor	r25, r25
+ 240:	02 97       	sbiw	r24, 0x02	; 2
+ 242:	09 f0       	breq	.+2      	; 0x246 <__vector_4+0x1b4>
+ 244:	ae c1       	rjmp	.+860    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+ 246:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 1;
+ 24a:	81 e0       	ldi	r24, 0x01	; 1
+ 24c:	80 93 84 00 	sts	0x0084, r24
+ 250:	a8 c1       	rjmp	.+848    	; 0x5a2 <__stack+0x143>
+		}
+	}
+	// State Increment 1
+	else if ((incrementCount == 1) && (decrementCount == 0)){
+ 252:	80 91 84 00 	lds	r24, 0x0084
+ 256:	88 23       	and	r24, r24
+ 258:	09 f4       	brne	.+2      	; 0x25c <__vector_4+0x1ca>
+ 25a:	50 c1       	rjmp	.+672    	; 0x4fc <__stack+0x9d>
+ 25c:	4a c1       	rjmp	.+660    	; 0x4f2 <__stack+0x93>
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+			incrementCount = 0;
+ 25e:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 262:	10 92 84 00 	sts	0x0084, r1
+ 266:	9d c1       	rjmp	.+826    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 1
+		// -> State Increment 1
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+ 268:	80 b3       	in	r24, 0x10	; 16
+ 26a:	90 e0       	ldi	r25, 0x00	; 0
+ 26c:	80 95       	com	r24
+ 26e:	90 95       	com	r25
+ 270:	83 70       	andi	r24, 0x03	; 3
+ 272:	99 27       	eor	r25, r25
+ 274:	01 97       	sbiw	r24, 0x01	; 1
+ 276:	31 f4       	brne	.+12     	; 0x284 <__vector_4+0x1f2>
+			incrementCount = 1;
+ 278:	81 e0       	ldi	r24, 0x01	; 1
+ 27a:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 27e:	10 92 84 00 	sts	0x0084, r1
+ 282:	8f c1       	rjmp	.+798    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 1
+		// -> State Increment 2
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 284:	80 b3       	in	r24, 0x10	; 16
+ 286:	90 e0       	ldi	r25, 0x00	; 0
+ 288:	80 95       	com	r24
+ 28a:	90 95       	com	r25
+ 28c:	83 70       	andi	r24, 0x03	; 3
+ 28e:	99 27       	eor	r25, r25
+ 290:	03 97       	sbiw	r24, 0x03	; 3
+ 292:	09 f0       	breq	.+2      	; 0x296 <__vector_4+0x204>
+ 294:	86 c1       	rjmp	.+780    	; 0x5a2 <__stack+0x143>
+			incrementCount = 2;
+ 296:	82 e0       	ldi	r24, 0x02	; 2
+ 298:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 29c:	10 92 84 00 	sts	0x0084, r1
+ 2a0:	80 c1       	rjmp	.+768    	; 0x5a2 <__stack+0x143>
+		}
+	}
+	// State Increment 2
+	else if ((incrementCount == 2) && (decrementCount == 0)){
+ 2a2:	80 91 84 00 	lds	r24, 0x0084
+ 2a6:	88 23       	and	r24, r24
+ 2a8:	09 f4       	brne	.+2      	; 0x2ac <__vector_4+0x21a>
+ 2aa:	32 c1       	rjmp	.+612    	; 0x510 <__stack+0xb1>
+ 2ac:	3b c1       	rjmp	.+630    	; 0x524 <__stack+0xc5>
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+			incrementCount = 0;
+ 2ae:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 2b2:	10 92 84 00 	sts	0x0084, r1
+ 2b6:	75 c1       	rjmp	.+746    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 1
+		// -> State Increment 1
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+ 2b8:	80 b3       	in	r24, 0x10	; 16
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	80 95       	com	r24
+ 2be:	90 95       	com	r25
+ 2c0:	83 70       	andi	r24, 0x03	; 3
+ 2c2:	99 27       	eor	r25, r25
+ 2c4:	01 97       	sbiw	r24, 0x01	; 1
+ 2c6:	31 f4       	brne	.+12     	; 0x2d4 <__vector_4+0x242>
+			incrementCount = 1;
+ 2c8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ca:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 2ce:	10 92 84 00 	sts	0x0084, r1
+ 2d2:	67 c1       	rjmp	.+718    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 1
+		// -> State Increment 2
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 2d4:	80 b3       	in	r24, 0x10	; 16
+ 2d6:	90 e0       	ldi	r25, 0x00	; 0
+ 2d8:	80 95       	com	r24
+ 2da:	90 95       	com	r25
+ 2dc:	83 70       	andi	r24, 0x03	; 3
+ 2de:	99 27       	eor	r25, r25
+ 2e0:	03 97       	sbiw	r24, 0x03	; 3
+ 2e2:	31 f4       	brne	.+12     	; 0x2f0 <__vector_4+0x25e>
+			incrementCount = 2;
+ 2e4:	82 e0       	ldi	r24, 0x02	; 2
+ 2e6:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 2ea:	10 92 84 00 	sts	0x0084, r1
+ 2ee:	59 c1       	rjmp	.+690    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 0
+		// -> State Increment 3
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+ 2f0:	80 b3       	in	r24, 0x10	; 16
+ 2f2:	90 e0       	ldi	r25, 0x00	; 0
+ 2f4:	80 95       	com	r24
+ 2f6:	90 95       	com	r25
+ 2f8:	83 70       	andi	r24, 0x03	; 3
+ 2fa:	99 27       	eor	r25, r25
+ 2fc:	02 97       	sbiw	r24, 0x02	; 2
+ 2fe:	09 f0       	breq	.+2      	; 0x302 <__vector_4+0x270>
+ 300:	50 c1       	rjmp	.+672    	; 0x5a2 <__stack+0x143>
+			incrementCount = 3;
+ 302:	83 e0       	ldi	r24, 0x03	; 3
+ 304:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 308:	10 92 84 00 	sts	0x0084, r1
+ 30c:	4a c1       	rjmp	.+660    	; 0x5a2 <__stack+0x143>
+		}
+	}
+	// State Increment 3
+	else if ((incrementCount == 3) && (decrementCount == 0)){
+ 30e:	80 91 84 00 	lds	r24, 0x0084
+ 312:	88 23       	and	r24, r24
+ 314:	09 f4       	brne	.+2      	; 0x318 <__vector_4+0x286>
+ 316:	0b c1       	rjmp	.+534    	; 0x52e <__stack+0xcf>
+ 318:	14 c1       	rjmp	.+552    	; 0x542 <__stack+0xe3>
+		// B = 1  A = 1
+		// -> State Increment 2
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+			incrementCount = 2;
+ 31a:	82 e0       	ldi	r24, 0x02	; 2
+ 31c:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 320:	10 92 84 00 	sts	0x0084, r1
+ 324:	3e c1       	rjmp	.+636    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 0
+		// -> State Increment 3
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+ 326:	80 b3       	in	r24, 0x10	; 16
+ 328:	90 e0       	ldi	r25, 0x00	; 0
+ 32a:	80 95       	com	r24
+ 32c:	90 95       	com	r25
+ 32e:	83 70       	andi	r24, 0x03	; 3
+ 330:	99 27       	eor	r25, r25
+ 332:	02 97       	sbiw	r24, 0x02	; 2
+ 334:	31 f4       	brne	.+12     	; 0x342 <__vector_4+0x2b0>
+			incrementCount = 3;
+ 336:	83 e0       	ldi	r24, 0x03	; 3
+ 338:	80 93 85 00 	sts	0x0085, r24
+			decrementCount = 0;
+ 33c:	10 92 84 00 	sts	0x0084, r1
+ 340:	30 c1       	rjmp	.+608    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 0
+		// -> State 0
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 342:	80 b3       	in	r24, 0x10	; 16
+ 344:	90 e0       	ldi	r25, 0x00	; 0
+ 346:	80 95       	com	r24
+ 348:	90 95       	com	r25
+ 34a:	83 70       	andi	r24, 0x03	; 3
+ 34c:	99 27       	eor	r25, r25
+ 34e:	89 2b       	or	r24, r25
+ 350:	09 f0       	breq	.+2      	; 0x354 <__vector_4+0x2c2>
+ 352:	27 c1       	rjmp	.+590    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+ 354:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 358:	10 92 84 00 	sts	0x0084, r1
+			if (Indicators.units == 9){
+ 35c:	80 91 6d 00 	lds	r24, 0x006D
+ 360:	89 30       	cpi	r24, 0x09	; 9
+ 362:	89 f4       	brne	.+34     	; 0x386 <__vector_4+0x2f4>
+				if (Indicators.tens == 9){
+ 364:	80 91 6c 00 	lds	r24, 0x006C
+ 368:	89 30       	cpi	r24, 0x09	; 9
+ 36a:	29 f4       	brne	.+10     	; 0x376 <__vector_4+0x2e4>
+					Indicators.tens = 9;
+ 36c:	80 93 6c 00 	sts	0x006C, r24
+					Indicators.units = 9;
+ 370:	80 93 6d 00 	sts	0x006D, r24
+ 374:	16 c1       	rjmp	.+556    	; 0x5a2 <__stack+0x143>
+				}
+				else{
+					Indicators.tens = Indicators.tens + 1;
+ 376:	ec e6       	ldi	r30, 0x6C	; 108
+ 378:	f0 e0       	ldi	r31, 0x00	; 0
+ 37a:	80 81       	ld	r24, Z
+ 37c:	8f 5f       	subi	r24, 0xFF	; 255
+ 37e:	80 83       	st	Z, r24
+					Indicators.units = 0;
+ 380:	10 92 6d 00 	sts	0x006D, r1
+ 384:	0e c1       	rjmp	.+540    	; 0x5a2 <__stack+0x143>
+				}
+			}
+			else{
+				Indicators.units = Indicators.units + 1;
+ 386:	ed e6       	ldi	r30, 0x6D	; 109
+ 388:	f0 e0       	ldi	r31, 0x00	; 0
+ 38a:	80 81       	ld	r24, Z
+ 38c:	8f 5f       	subi	r24, 0xFF	; 255
+ 38e:	80 83       	st	Z, r24
+ 390:	08 c1       	rjmp	.+528    	; 0x5a2 <__stack+0x143>
+			}
+		}
+	}
+	// State Decrement 1
+	else if ((incrementCount == 0) && (decrementCount == 1)){
+ 392:	80 91 84 00 	lds	r24, 0x0084
+ 396:	81 30       	cpi	r24, 0x01	; 1
+ 398:	09 f0       	breq	.+2      	; 0x39c <__vector_4+0x30a>
+ 39a:	e3 c0       	rjmp	.+454    	; 0x562 <__stack+0x103>
+ 39c:	d8 c0       	rjmp	.+432    	; 0x54e <__stack+0xef>
+		// B = 1  A = 0
+		// -> State Decrement 1
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+			incrementCount = 0;
+ 39e:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 1;
+ 3a2:	81 e0       	ldi	r24, 0x01	; 1
+ 3a4:	80 93 84 00 	sts	0x0084, r24
+ 3a8:	fc c0       	rjmp	.+504    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 0
+		// -> State 0
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 3aa:	80 b3       	in	r24, 0x10	; 16
+ 3ac:	90 e0       	ldi	r25, 0x00	; 0
+ 3ae:	80 95       	com	r24
+ 3b0:	90 95       	com	r25
+ 3b2:	83 70       	andi	r24, 0x03	; 3
+ 3b4:	99 27       	eor	r25, r25
+ 3b6:	89 2b       	or	r24, r25
+ 3b8:	29 f4       	brne	.+10     	; 0x3c4 <__vector_4+0x332>
+			incrementCount = 0;
+ 3ba:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 3be:	10 92 84 00 	sts	0x0084, r1
+ 3c2:	ef c0       	rjmp	.+478    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 1
+		// -> State Decrement 2
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 3c4:	80 b3       	in	r24, 0x10	; 16
+ 3c6:	90 e0       	ldi	r25, 0x00	; 0
+ 3c8:	80 95       	com	r24
+ 3ca:	90 95       	com	r25
+ 3cc:	83 70       	andi	r24, 0x03	; 3
+ 3ce:	99 27       	eor	r25, r25
+ 3d0:	03 97       	sbiw	r24, 0x03	; 3
+ 3d2:	09 f0       	breq	.+2      	; 0x3d6 <__vector_4+0x344>
+ 3d4:	e6 c0       	rjmp	.+460    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+ 3d6:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 2;
+ 3da:	82 e0       	ldi	r24, 0x02	; 2
+ 3dc:	80 93 84 00 	sts	0x0084, r24
+ 3e0:	e0 c0       	rjmp	.+448    	; 0x5a2 <__stack+0x143>
+		}
+	}
+	// State Decrement 2
+	else if ((incrementCount == 0) && (decrementCount == 2)){
+ 3e2:	80 91 84 00 	lds	r24, 0x0084
+ 3e6:	82 30       	cpi	r24, 0x02	; 2
+ 3e8:	09 f0       	breq	.+2      	; 0x3ec <__vector_4+0x35a>
+ 3ea:	cb c0       	rjmp	.+406    	; 0x582 <__stack+0x123>
+ 3ec:	c0 c0       	rjmp	.+384    	; 0x56e <__stack+0x10f>
+		// B = 1  A = 1
+		// -> State Decrement 2
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+			incrementCount = 0;
+ 3ee:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 2;
+ 3f2:	82 e0       	ldi	r24, 0x02	; 2
+ 3f4:	80 93 84 00 	sts	0x0084, r24
+ 3f8:	d4 c0       	rjmp	.+424    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 0
+		// -> State Decrement 1
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+ 3fa:	80 b3       	in	r24, 0x10	; 16
+ 3fc:	90 e0       	ldi	r25, 0x00	; 0
+ 3fe:	80 95       	com	r24
+ 400:	90 95       	com	r25
+ 402:	83 70       	andi	r24, 0x03	; 3
+ 404:	99 27       	eor	r25, r25
+ 406:	02 97       	sbiw	r24, 0x02	; 2
+ 408:	31 f4       	brne	.+12     	; 0x416 <__vector_4+0x384>
+			incrementCount = 0;
+ 40a:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 1;
+ 40e:	81 e0       	ldi	r24, 0x01	; 1
+ 410:	80 93 84 00 	sts	0x0084, r24
+ 414:	c6 c0       	rjmp	.+396    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 0
+		// -> State 0
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 416:	80 b3       	in	r24, 0x10	; 16
+ 418:	90 e0       	ldi	r25, 0x00	; 0
+ 41a:	80 95       	com	r24
+ 41c:	90 95       	com	r25
+ 41e:	83 70       	andi	r24, 0x03	; 3
+ 420:	99 27       	eor	r25, r25
+ 422:	89 2b       	or	r24, r25
+ 424:	29 f4       	brne	.+10     	; 0x430 <__vector_4+0x39e>
+			incrementCount = 0;
+ 426:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 42a:	10 92 84 00 	sts	0x0084, r1
+ 42e:	b9 c0       	rjmp	.+370    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 1
+		// -> State Decrement 3
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+ 430:	80 b3       	in	r24, 0x10	; 16
+ 432:	90 e0       	ldi	r25, 0x00	; 0
+ 434:	80 95       	com	r24
+ 436:	90 95       	com	r25
+ 438:	83 70       	andi	r24, 0x03	; 3
+ 43a:	99 27       	eor	r25, r25
+ 43c:	01 97       	sbiw	r24, 0x01	; 1
+ 43e:	09 f0       	breq	.+2      	; 0x442 <__vector_4+0x3b0>
+ 440:	b0 c0       	rjmp	.+352    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+ 442:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 3;
+ 446:	83 e0       	ldi	r24, 0x03	; 3
+ 448:	80 93 84 00 	sts	0x0084, r24
+ 44c:	aa c0       	rjmp	.+340    	; 0x5a2 <__stack+0x143>
+		}
+	}
+	// State Decrement 3
+	else if ((incrementCount == 0) && (decrementCount == 3)){
+ 44e:	80 91 84 00 	lds	r24, 0x0084
+ 452:	83 30       	cpi	r24, 0x03	; 3
+ 454:	09 f0       	breq	.+2      	; 0x458 <__vector_4+0x3c6>
+ 456:	a5 c0       	rjmp	.+330    	; 0x5a2 <__stack+0x143>
+ 458:	9a c0       	rjmp	.+308    	; 0x58e <__stack+0x12f>
+		// B = 0  A = 1
+		// -> State Decrement 3
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+			incrementCount = 0;
+ 45a:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 3;
+ 45e:	83 e0       	ldi	r24, 0x03	; 3
+ 460:	80 93 84 00 	sts	0x0084, r24
+ 464:	9e c0       	rjmp	.+316    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 1  A = 1
+		// -> State Decrement 2
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 466:	80 b3       	in	r24, 0x10	; 16
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	80 95       	com	r24
+ 46c:	90 95       	com	r25
+ 46e:	83 70       	andi	r24, 0x03	; 3
+ 470:	99 27       	eor	r25, r25
+ 472:	03 97       	sbiw	r24, 0x03	; 3
+ 474:	31 f4       	brne	.+12     	; 0x482 <__stack+0x23>
+			incrementCount = 0;
+ 476:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 2;
+ 47a:	82 e0       	ldi	r24, 0x02	; 2
+ 47c:	80 93 84 00 	sts	0x0084, r24
+ 480:	90 c0       	rjmp	.+288    	; 0x5a2 <__stack+0x143>
+		}
+		// B = 0  A = 0
+		// -> State 0
+		else if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 482:	80 b3       	in	r24, 0x10	; 16
+ 484:	90 e0       	ldi	r25, 0x00	; 0
+ 486:	80 95       	com	r24
+ 488:	90 95       	com	r25
+ 48a:	83 70       	andi	r24, 0x03	; 3
+ 48c:	99 27       	eor	r25, r25
+ 48e:	89 2b       	or	r24, r25
+ 490:	09 f0       	breq	.+2      	; 0x494 <__stack+0x35>
+ 492:	87 c0       	rjmp	.+270    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+ 494:	10 92 85 00 	sts	0x0085, r1
+			decrementCount = 0;
+ 498:	10 92 84 00 	sts	0x0084, r1
+			if (Indicators.units == 0){
+ 49c:	80 91 6d 00 	lds	r24, 0x006D
+ 4a0:	81 11       	cpse	r24, r1
+ 4a2:	12 c0       	rjmp	.+36     	; 0x4c8 <__stack+0x69>
+				if (Indicators.tens == 1){
+ 4a4:	80 91 6c 00 	lds	r24, 0x006C
+ 4a8:	81 30       	cpi	r24, 0x01	; 1
+ 4aa:	29 f4       	brne	.+10     	; 0x4b6 <__stack+0x57>
+					Indicators.tens = 1;
+ 4ac:	80 93 6c 00 	sts	0x006C, r24
+					Indicators.units = 0;
+ 4b0:	10 92 6d 00 	sts	0x006D, r1
+ 4b4:	76 c0       	rjmp	.+236    	; 0x5a2 <__stack+0x143>
+				}
+				else{
+					Indicators.tens = Indicators.tens - 1;
+ 4b6:	ec e6       	ldi	r30, 0x6C	; 108
+ 4b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ba:	80 81       	ld	r24, Z
+ 4bc:	81 50       	subi	r24, 0x01	; 1
+ 4be:	80 83       	st	Z, r24
+					Indicators.units = 9;
+ 4c0:	89 e0       	ldi	r24, 0x09	; 9
+ 4c2:	80 93 6d 00 	sts	0x006D, r24
+ 4c6:	6d c0       	rjmp	.+218    	; 0x5a2 <__stack+0x143>
+				}
+			}
+			else{
+				Indicators.units = Indicators.units - 1;
+ 4c8:	ed e6       	ldi	r30, 0x6D	; 109
+ 4ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 4cc:	80 81       	ld	r24, Z
+ 4ce:	81 50       	subi	r24, 0x01	; 1
+ 4d0:	80 83       	st	Z, r24
+ 4d2:	67 c0       	rjmp	.+206    	; 0x5a2 <__stack+0x143>
+			incrementCount = 0;
+			decrementCount = 1;
+		}
+	}
+	// State Increment 1
+	else if ((incrementCount == 1) && (decrementCount == 0)){
+ 4d4:	80 91 85 00 	lds	r24, 0x0085
+ 4d8:	81 30       	cpi	r24, 0x01	; 1
+ 4da:	59 f4       	brne	.+22     	; 0x4f2 <__stack+0x93>
+ 4dc:	ba ce       	rjmp	.-652    	; 0x252 <__vector_4+0x1c0>
+	// Encoder checking
+	// State 0
+	if ((incrementCount == 0) && (decrementCount == 0)){
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 4de:	80 b3       	in	r24, 0x10	; 16
+ 4e0:	90 e0       	ldi	r25, 0x00	; 0
+ 4e2:	80 95       	com	r24
+ 4e4:	90 95       	com	r25
+ 4e6:	83 70       	andi	r24, 0x03	; 3
+ 4e8:	99 27       	eor	r25, r25
+ 4ea:	89 2b       	or	r24, r25
+ 4ec:	09 f0       	breq	.+2      	; 0x4f0 <__stack+0x91>
+ 4ee:	94 ce       	rjmp	.-728    	; 0x218 <__vector_4+0x186>
+ 4f0:	8e ce       	rjmp	.-740    	; 0x20e <__vector_4+0x17c>
+			incrementCount = 2;
+			decrementCount = 0;
+		}
+	}
+	// State Increment 2
+	else if ((incrementCount == 2) && (decrementCount == 0)){
+ 4f2:	80 91 85 00 	lds	r24, 0x0085
+ 4f6:	82 30       	cpi	r24, 0x02	; 2
+ 4f8:	a9 f4       	brne	.+42     	; 0x524 <__stack+0xc5>
+ 4fa:	d3 ce       	rjmp	.-602    	; 0x2a2 <__vector_4+0x210>
+	}
+	// State Increment 1
+	else if ((incrementCount == 1) && (decrementCount == 0)){
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 4fc:	80 b3       	in	r24, 0x10	; 16
+ 4fe:	90 e0       	ldi	r25, 0x00	; 0
+ 500:	80 95       	com	r24
+ 502:	90 95       	com	r25
+ 504:	83 70       	andi	r24, 0x03	; 3
+ 506:	99 27       	eor	r25, r25
+ 508:	89 2b       	or	r24, r25
+ 50a:	09 f0       	breq	.+2      	; 0x50e <__stack+0xaf>
+ 50c:	ad ce       	rjmp	.-678    	; 0x268 <__vector_4+0x1d6>
+ 50e:	a7 ce       	rjmp	.-690    	; 0x25e <__vector_4+0x1cc>
+	}
+	// State Increment 2
+	else if ((incrementCount == 2) && (decrementCount == 0)){
+		// B = 0  A = 0
+		// -> State 0
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 0){
+ 510:	80 b3       	in	r24, 0x10	; 16
+ 512:	90 e0       	ldi	r25, 0x00	; 0
+ 514:	80 95       	com	r24
+ 516:	90 95       	com	r25
+ 518:	83 70       	andi	r24, 0x03	; 3
+ 51a:	99 27       	eor	r25, r25
+ 51c:	89 2b       	or	r24, r25
+ 51e:	09 f0       	breq	.+2      	; 0x522 <__stack+0xc3>
+ 520:	cb ce       	rjmp	.-618    	; 0x2b8 <__vector_4+0x226>
+ 522:	c5 ce       	rjmp	.-630    	; 0x2ae <__vector_4+0x21c>
+			incrementCount = 3;
+			decrementCount = 0;
+		}
+	}
+	// State Increment 3
+	else if ((incrementCount == 3) && (decrementCount == 0)){
+ 524:	80 91 85 00 	lds	r24, 0x0085
+ 528:	83 30       	cpi	r24, 0x03	; 3
+ 52a:	59 f4       	brne	.+22     	; 0x542 <__stack+0xe3>
+ 52c:	f0 ce       	rjmp	.-544    	; 0x30e <__vector_4+0x27c>
+		// B = 1  A = 1
+		// -> State Increment 2
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 52e:	80 b3       	in	r24, 0x10	; 16
+ 530:	90 e0       	ldi	r25, 0x00	; 0
+ 532:	80 95       	com	r24
+ 534:	90 95       	com	r25
+ 536:	83 70       	andi	r24, 0x03	; 3
+ 538:	99 27       	eor	r25, r25
+ 53a:	03 97       	sbiw	r24, 0x03	; 3
+ 53c:	09 f0       	breq	.+2      	; 0x540 <__stack+0xe1>
+ 53e:	f3 ce       	rjmp	.-538    	; 0x326 <__vector_4+0x294>
+ 540:	ec ce       	rjmp	.-552    	; 0x31a <__vector_4+0x288>
+				Indicators.units = Indicators.units + 1;
+			}
+		}
+	}
+	// State Decrement 1
+	else if ((incrementCount == 0) && (decrementCount == 1)){
+ 542:	80 91 85 00 	lds	r24, 0x0085
+ 546:	88 23       	and	r24, r24
+ 548:	09 f4       	brne	.+2      	; 0x54c <__stack+0xed>
+ 54a:	23 cf       	rjmp	.-442    	; 0x392 <__vector_4+0x300>
+ 54c:	0a c0       	rjmp	.+20     	; 0x562 <__stack+0x103>
+		// B = 1  A = 0
+		// -> State Decrement 1
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 2){
+ 54e:	80 b3       	in	r24, 0x10	; 16
+ 550:	90 e0       	ldi	r25, 0x00	; 0
+ 552:	80 95       	com	r24
+ 554:	90 95       	com	r25
+ 556:	83 70       	andi	r24, 0x03	; 3
+ 558:	99 27       	eor	r25, r25
+ 55a:	02 97       	sbiw	r24, 0x02	; 2
+ 55c:	09 f0       	breq	.+2      	; 0x560 <__stack+0x101>
+ 55e:	25 cf       	rjmp	.-438    	; 0x3aa <__vector_4+0x318>
+ 560:	1e cf       	rjmp	.-452    	; 0x39e <__vector_4+0x30c>
+			incrementCount = 0;
+			decrementCount = 2;
+		}
+	}
+	// State Decrement 2
+	else if ((incrementCount == 0) && (decrementCount == 2)){
+ 562:	80 91 85 00 	lds	r24, 0x0085
+ 566:	88 23       	and	r24, r24
+ 568:	09 f4       	brne	.+2      	; 0x56c <__stack+0x10d>
+ 56a:	3b cf       	rjmp	.-394    	; 0x3e2 <__vector_4+0x350>
+ 56c:	0a c0       	rjmp	.+20     	; 0x582 <__stack+0x123>
+		// B = 1  A = 1
+		// -> State Decrement 2
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 3){
+ 56e:	80 b3       	in	r24, 0x10	; 16
+ 570:	90 e0       	ldi	r25, 0x00	; 0
+ 572:	80 95       	com	r24
+ 574:	90 95       	com	r25
+ 576:	83 70       	andi	r24, 0x03	; 3
+ 578:	99 27       	eor	r25, r25
+ 57a:	03 97       	sbiw	r24, 0x03	; 3
+ 57c:	09 f0       	breq	.+2      	; 0x580 <__stack+0x121>
+ 57e:	3d cf       	rjmp	.-390    	; 0x3fa <__vector_4+0x368>
+ 580:	36 cf       	rjmp	.-404    	; 0x3ee <__vector_4+0x35c>
+			incrementCount = 0;
+			decrementCount = 3;
+		}
+	}
+	// State Decrement 3
+	else if ((incrementCount == 0) && (decrementCount == 3)){
+ 582:	80 91 85 00 	lds	r24, 0x0085
+ 586:	88 23       	and	r24, r24
+ 588:	09 f4       	brne	.+2      	; 0x58c <__stack+0x12d>
+ 58a:	61 cf       	rjmp	.-318    	; 0x44e <__vector_4+0x3bc>
+ 58c:	0a c0       	rjmp	.+20     	; 0x5a2 <__stack+0x143>
+		// B = 0  A = 1
+		// -> State Decrement 3
+		if (((~PIND) & ((1 << ENCA_In) | (1 << ENCB_In))) == 1){
+ 58e:	80 b3       	in	r24, 0x10	; 16
+ 590:	90 e0       	ldi	r25, 0x00	; 0
+ 592:	80 95       	com	r24
+ 594:	90 95       	com	r25
+ 596:	83 70       	andi	r24, 0x03	; 3
+ 598:	99 27       	eor	r25, r25
+ 59a:	01 97       	sbiw	r24, 0x01	; 1
+ 59c:	09 f0       	breq	.+2      	; 0x5a0 <__stack+0x141>
+ 59e:	63 cf       	rjmp	.-314    	; 0x466 <__stack+0x7>
+ 5a0:	5c cf       	rjmp	.-328    	; 0x45a <__vector_4+0x3c8>
+			else{
+				Indicators.units = Indicators.units - 1;
+			}
+		}
+	}
+}
+ 5a2:	ff 91       	pop	r31
+ 5a4:	ef 91       	pop	r30
+ 5a6:	df 91       	pop	r29
+ 5a8:	cf 91       	pop	r28
+ 5aa:	bf 91       	pop	r27
+ 5ac:	af 91       	pop	r26
+ 5ae:	9f 91       	pop	r25
+ 5b0:	8f 91       	pop	r24
+ 5b2:	7f 91       	pop	r23
+ 5b4:	6f 91       	pop	r22
+ 5b6:	5f 91       	pop	r21
+ 5b8:	4f 91       	pop	r20
+ 5ba:	3f 91       	pop	r19
+ 5bc:	2f 91       	pop	r18
+ 5be:	1f 91       	pop	r17
+ 5c0:	0f 91       	pop	r16
+ 5c2:	ff 90       	pop	r15
+ 5c4:	ef 90       	pop	r14
+ 5c6:	df 90       	pop	r13
+ 5c8:	cf 90       	pop	r12
+ 5ca:	0f 90       	pop	r0
+ 5cc:	0f be       	out	0x3f, r0	; 63
+ 5ce:	0f 90       	pop	r0
+ 5d0:	1f 90       	pop	r1
+ 5d2:	18 95       	reti
+
+000005d4 <__vector_9>:
+
+// Timer 0 is for the PWM control of the Servo
+ISR(TIMER0_OVF_vect){
+ 5d4:	1f 92       	push	r1
+ 5d6:	0f 92       	push	r0
+ 5d8:	0f b6       	in	r0, 0x3f	; 63
+ 5da:	0f 92       	push	r0
+ 5dc:	11 24       	eor	r1, r1
+ 5de:	8f 93       	push	r24
+ 5e0:	9f 93       	push	r25
+	// Incrementing the iteration number variable
+	currentIteration = currentIteration + 1;
+ 5e2:	80 91 83 00 	lds	r24, 0x0083
+ 5e6:	8f 5f       	subi	r24, 0xFF	; 255
+ 5e8:	80 93 83 00 	sts	0x0083, r24
+	// If 20 ms since the timer started passed
+	// Reset the TCNT0 register
+	// Reset the Servo pin
+	// Reset the iteration number variable
+	if (currentIteration == ITERATIONS_AMOUNT){
+ 5ec:	80 91 83 00 	lds	r24, 0x0083
+ 5f0:	8e 34       	cpi	r24, 0x4E	; 78
+ 5f2:	21 f4       	brne	.+8      	; 0x5fc <__vector_9+0x28>
+		PORTB |= (1 << SERVO_Out);
+ 5f4:	c3 9a       	sbi	0x18, 3	; 24
+		currentIteration = 0;
+ 5f6:	10 92 83 00 	sts	0x0083, r1
+ 5fa:	07 c0       	rjmp	.+14     	; 0x60a <__vector_9+0x36>
+	}
+	// If time of high signal passed set the servo pin
+	else if (currentIteration == switchIteration){
+ 5fc:	90 91 83 00 	lds	r25, 0x0083
+ 600:	80 91 6a 00 	lds	r24, 0x006A
+ 604:	98 13       	cpse	r25, r24
+ 606:	01 c0       	rjmp	.+2      	; 0x60a <__vector_9+0x36>
+		PORTB &= ~(1 << SERVO_Out);
+ 608:	c3 98       	cbi	0x18, 3	; 24
+	}
+}
+ 60a:	9f 91       	pop	r25
+ 60c:	8f 91       	pop	r24
+ 60e:	0f 90       	pop	r0
+ 610:	0f be       	out	0x3f, r0	; 63
+ 612:	0f 90       	pop	r0
+ 614:	1f 90       	pop	r1
+ 616:	18 95       	reti
+
+00000618 <_Z19PortsInitializationv>:
+volatile void PortsInitialization(void){
+	// Port A is for indicating Ready (green) or Put (blue) LEDS
+	// Port B is for Motor-Pump and Servo
+	// Port C is for the 7-segment indicators
+	// Port D is for the dynamic indication transistors
+	DDRA |= (1 << LEDREADY1_Out) | (1 << LEDREADY2_Out) | (1 << LEDREADY3_Out) | (1 << LEDREADY4_Out) | (1 << LEDPUT1_Out) | (1 << LEDPUT2_Out) | (1 << LEDPUT3_Out) | (1 << LEDPUT4_Out);
+ 618:	8a b3       	in	r24, 0x1a	; 26
+ 61a:	8f ef       	ldi	r24, 0xFF	; 255
+ 61c:	8a bb       	out	0x1a, r24	; 26
+	DDRB |= (1 << MOTOR_Out) | (1 << SERVO_Out);
+ 61e:	87 b3       	in	r24, 0x17	; 23
+ 620:	8a 60       	ori	r24, 0x0A	; 10
+ 622:	87 bb       	out	0x17, r24	; 23
+	DDRC |= (1 << SEGA_Out) | (1 << SEGB_Out) | (1 << SEGC_Out) | (1 << SEGD_Out) | (1 << SEGE_Out) | (1 << SEGF_Out) | (1 << SEGG_Out);
+ 624:	84 b3       	in	r24, 0x14	; 20
+ 626:	8f 67       	ori	r24, 0x7F	; 127
+ 628:	84 bb       	out	0x14, r24	; 20
+	DDRD |= (1 << UNITS_Out) | (1 << TENS_Out);
+ 62a:	81 b3       	in	r24, 0x11	; 17
+ 62c:	80 6c       	ori	r24, 0xC0	; 192
+ 62e:	81 bb       	out	0x11, r24	; 17
+ 630:	08 95       	ret
+
+00000632 <_Z20TimersInitializationv>:
+}
+
+volatile void TimersInitialization(void){
+	// PWM for Timer 0
+	TIMSK |= (1 << TOIE0);
+ 632:	89 b7       	in	r24, 0x39	; 57
+ 634:	81 60       	ori	r24, 0x01	; 1
+ 636:	89 bf       	out	0x39, r24	; 57
+	TCCR0 |= (1 << CS01);
+ 638:	83 b7       	in	r24, 0x33	; 51
+ 63a:	82 60       	ori	r24, 0x02	; 2
+ 63c:	83 bf       	out	0x33, r24	; 51
+	//Enabling the timer TIMER2 to count normally
+	//The TIMER2 scaler is 128
+	TIMSK |= (1 << TOIE2);
+ 63e:	89 b7       	in	r24, 0x39	; 57
+ 640:	80 64       	ori	r24, 0x40	; 64
+ 642:	89 bf       	out	0x39, r24	; 57
+	TCCR2 |= (1 << CS21) | (1 << CS20);
+ 644:	85 b5       	in	r24, 0x25	; 37
+ 646:	83 60       	ori	r24, 0x03	; 3
+ 648:	85 bd       	out	0x25, r24	; 37
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 64a:	2f ef       	ldi	r18, 0xFF	; 255
+ 64c:	80 e7       	ldi	r24, 0x70	; 112
+ 64e:	92 e0       	ldi	r25, 0x02	; 2
+ 650:	21 50       	subi	r18, 0x01	; 1
+ 652:	80 40       	sbci	r24, 0x00	; 0
+ 654:	90 40       	sbci	r25, 0x00	; 0
+ 656:	e1 f7       	brne	.-8      	; 0x650 <_Z20TimersInitializationv+0x1e>
+ 658:	00 c0       	rjmp	.+0      	; 0x65a <_Z20TimersInitializationv+0x28>
+ 65a:	00 00       	nop
+ 65c:	08 95       	ret
+
+0000065e <main>:
+// Ports initializing function
+volatile void PortsInitialization(void);
+// Timers initialization function
+volatile void TimersInitialization(void);
+
+int main(void){
+ 65e:	cf 93       	push	r28
+ 660:	df 93       	push	r29
+ 662:	00 d0       	rcall	.+0      	; 0x664 <main+0x6>
+ 664:	00 d0       	rcall	.+0      	; 0x666 <main+0x8>
+ 666:	00 d0       	rcall	.+0      	; 0x668 <main+0xa>
+ 668:	cd b7       	in	r28, 0x3d	; 61
+ 66a:	de b7       	in	r29, 0x3e	; 62
+	TimersInitialization();
+ 66c:	0e 94 19 03 	call	0x632	; 0x632 <_Z20TimersInitializationv>
+	Indicators.dynamicIndicationFlag = 1;
+ 670:	81 e0       	ldi	r24, 0x01	; 1
+ 672:	80 93 6e 00 	sts	0x006E, r24
+	Indicators.tens = 2;
+ 676:	82 e0       	ldi	r24, 0x02	; 2
+ 678:	80 93 6c 00 	sts	0x006C, r24
+	Indicators.units = 5;
+ 67c:	85 e0       	ldi	r24, 0x05	; 5
+ 67e:	80 93 6d 00 	sts	0x006D, r24
+	PortsInitialization();
+ 682:	0e 94 0c 03 	call	0x618	; 0x618 <_Z19PortsInitializationv>
+	sei();
+ 686:	78 94       	sei
+	// 1 - 0 degrees
+	// 2 - 60 degrees
+	// 3 - 120 degrees
+	// 4 - 180 degrees
+	void SetPosition(uint8_t position){
+		currentPosition = position;
+ 688:	10 92 82 00 	sts	0x0082, r1
+		switch(position){
+			case 0: // Default servo position (90 degrees)
+				switchIteration = SERVO_POSITION_DEFAULT;
+ 68c:	86 e0       	ldi	r24, 0x06	; 6
+ 68e:	80 93 6a 00 	sts	0x006A, r24
+ 692:	2f ef       	ldi	r18, 0xFF	; 255
+ 694:	81 e1       	ldi	r24, 0x11	; 17
+ 696:	9a e7       	ldi	r25, 0x7A	; 122
+ 698:	21 50       	subi	r18, 0x01	; 1
+ 69a:	80 40       	sbci	r24, 0x00	; 0
+ 69c:	90 40       	sbci	r25, 0x00	; 0
+ 69e:	e1 f7       	brne	.-8      	; 0x698 <main+0x3a>
+ 6a0:	00 c0       	rjmp	.+0      	; 0x6a2 <main+0x44>
+ 6a2:	00 00       	nop
+ 6a4:	0f 2e       	mov	r0, r31
+ 6a6:	f7 e7       	ldi	r31, 0x77	; 119
+ 6a8:	cf 2e       	mov	r12, r31
+ 6aa:	f0 e0       	ldi	r31, 0x00	; 0
+ 6ac:	df 2e       	mov	r13, r31
+ 6ae:	f0 2d       	mov	r31, r0
+ 6b0:	0f 2e       	mov	r0, r31
+ 6b2:	fb e7       	ldi	r31, 0x7B	; 123
+ 6b4:	ef 2e       	mov	r14, r31
+ 6b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 6b8:	ff 2e       	mov	r15, r31
+ 6ba:	f0 2d       	mov	r31, r0
+	Servo.SetPosition(0);
+	_delay_ms(5000);
+	while(1){
+		if (!(PINB & (1 << SSBUT_In))){
+			_delay_ms(100);
+			if (!(PINB & (1 << SSBUT_In))){
+ 6bc:	55 24       	eor	r5, r5
+ 6be:	53 94       	inc	r5
+	volatile uint8_t units;
+	// flag dor dynamic indication with transistors
+	volatile uint8_t dynamicIndicationFlag;
+	// Function for getting the current volume
+	volatile uint8_t Volume(void){
+		return (tens * 10 + units);
+ 6c0:	0f 2e       	mov	r0, r31
+ 6c2:	fc e6       	ldi	r31, 0x6C	; 108
+ 6c4:	af 2e       	mov	r10, r31
+ 6c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 6c8:	bf 2e       	mov	r11, r31
+ 6ca:	f0 2d       	mov	r31, r0
+ 6cc:	0f 2e       	mov	r0, r31
+ 6ce:	fd e6       	ldi	r31, 0x6D	; 109
+ 6d0:	8f 2e       	mov	r8, r31
+ 6d2:	f0 e0       	ldi	r31, 0x00	; 0
+ 6d4:	9f 2e       	mov	r9, r31
+ 6d6:	f0 2d       	mov	r31, r0
+		state = 0;
+	}
+	// Function starts the pouring
+	void StartPouring(uint16_t ml, uint8_t cupIndex, MyCups* cup){
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+ 6d8:	0f 2e       	mov	r0, r31
+ 6da:	f1 e8       	ldi	r31, 0x81	; 129
+ 6dc:	6f 2e       	mov	r6, r31
+ 6de:	f0 e0       	ldi	r31, 0x00	; 0
+ 6e0:	7f 2e       	mov	r7, r31
+ 6e2:	f0 2d       	mov	r31, r0
+	uint8_t endPouring;
+	// Function turns the motor pump on
+	void On(void){
+		PORTB |= (1 << MOTOR_Out);
+		// Setting state of the motor pump to 1
+		state = 1;
+ 6e4:	6f e7       	ldi	r22, 0x7F	; 127
+ 6e6:	70 e0       	ldi	r23, 0x00	; 0
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+		// Turning on the motor pump
+		On();
+		// Waiting till the fluid fills the volume
+		for (uint16_t pouringIterator = 0; pouringIterator < (ml * 30); pouringIterator++){
+ 6e8:	0f 2e       	mov	r0, r31
+ 6ea:	fe e1       	ldi	r31, 0x1E	; 30
+ 6ec:	4f 2e       	mov	r4, r31
+ 6ee:	f0 2d       	mov	r31, r0
+			}
+		}
+		// Turning off the motor pump
+		Off();
+		// If the pouring process failed
+		if (errorPouring == 1){
+ 6f0:	40 e8       	ldi	r20, 0x80	; 128
+ 6f2:	50 e0       	ldi	r21, 0x00	; 0
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+		// Turning on the motor pump
+		On();
+		// Waiting till the fluid fills the volume
+		for (uint16_t pouringIterator = 0; pouringIterator < (ml * 30); pouringIterator++){
+ 6f4:	31 2c       	mov	r3, r1
+ 6f6:	21 2c       	mov	r2, r1
+	PortsInitialization();
+	sei();
+	Servo.SetPosition(0);
+	_delay_ms(5000);
+	while(1){
+		if (!(PINB & (1 << SSBUT_In))){
+ 6f8:	b2 99       	sbic	0x16, 2	; 22
+ 6fa:	fe cf       	rjmp	.-4      	; 0x6f8 <main+0x9a>
+ 6fc:	af ef       	ldi	r26, 0xFF	; 255
+ 6fe:	b0 e7       	ldi	r27, 0x70	; 112
+ 700:	e2 e0       	ldi	r30, 0x02	; 2
+ 702:	a1 50       	subi	r26, 0x01	; 1
+ 704:	b0 40       	sbci	r27, 0x00	; 0
+ 706:	e0 40       	sbci	r30, 0x00	; 0
+ 708:	e1 f7       	brne	.-8      	; 0x702 <main+0xa4>
+ 70a:	00 c0       	rjmp	.+0      	; 0x70c <main+0xae>
+ 70c:	00 00       	nop
+			_delay_ms(100);
+			if (!(PINB & (1 << SSBUT_In))){
+ 70e:	b2 99       	sbic	0x16, 2	; 22
+ 710:	f3 cf       	rjmp	.-26     	; 0x6f8 <main+0x9a>
+ 712:	f6 01       	movw	r30, r12
+ 714:	15 2d       	mov	r17, r5
+		switch(position){
+			case 0: // Default servo position (90 degrees)
+				switchIteration = SERVO_POSITION_DEFAULT;
+			break;
+			case 1:	// 1st servo position (0 degrees)
+				switchIteration = SERVO_POSITION1;
+ 716:	fc 82       	std	Y+4, r15	; 0x04
+ 718:	eb 82       	std	Y+3, r14	; 0x03
+ 71a:	fa 83       	std	Y+2, r31	; 0x02
+ 71c:	e9 83       	std	Y+1, r30	; 0x01
+	while(1){
+		if (!(PINB & (1 << SSBUT_In))){
+			_delay_ms(100);
+			if (!(PINB & (1 << SSBUT_In))){
+				for (uint8_t i = 1; i < 5; i++){
+					if (Cups.positionEmpty[i - 1] == 0){
+ 71e:	80 81       	ld	r24, Z
+ 720:	81 11       	cpse	r24, r1
+ 722:	88 c0       	rjmp	.+272    	; 0x834 <main+0x1d6>
+	// 1 - 0 degrees
+	// 2 - 60 degrees
+	// 3 - 120 degrees
+	// 4 - 180 degrees
+	void SetPosition(uint8_t position){
+		currentPosition = position;
+ 724:	10 93 82 00 	sts	0x0082, r17
+		switch(position){
+ 728:	12 30       	cpi	r17, 0x02	; 2
+ 72a:	99 f0       	breq	.+38     	; 0x752 <main+0xf4>
+ 72c:	28 f4       	brcc	.+10     	; 0x738 <main+0xda>
+ 72e:	11 23       	and	r17, r17
+ 730:	41 f0       	breq	.+16     	; 0x742 <main+0xe4>
+ 732:	11 30       	cpi	r17, 0x01	; 1
+ 734:	51 f0       	breq	.+20     	; 0x74a <main+0xec>
+ 736:	18 c0       	rjmp	.+48     	; 0x768 <main+0x10a>
+ 738:	13 30       	cpi	r17, 0x03	; 3
+ 73a:	79 f0       	breq	.+30     	; 0x75a <main+0xfc>
+ 73c:	14 30       	cpi	r17, 0x04	; 4
+ 73e:	89 f0       	breq	.+34     	; 0x762 <main+0x104>
+ 740:	13 c0       	rjmp	.+38     	; 0x768 <main+0x10a>
+			case 0: // Default servo position (90 degrees)
+				switchIteration = SERVO_POSITION_DEFAULT;
+ 742:	26 e0       	ldi	r18, 0x06	; 6
+ 744:	20 93 6a 00 	sts	0x006A, r18
+ 748:	0f c0       	rjmp	.+30     	; 0x768 <main+0x10a>
+			break;
+			case 1:	// 1st servo position (0 degrees)
+				switchIteration = SERVO_POSITION1;
+ 74a:	8a e0       	ldi	r24, 0x0A	; 10
+ 74c:	80 93 6a 00 	sts	0x006A, r24
+ 750:	0b c0       	rjmp	.+22     	; 0x768 <main+0x10a>
+			break;
+			case 2:	// 2nd servo position (60 degrees)
+				switchIteration = SERVO_POSITION2;
+ 752:	98 e0       	ldi	r25, 0x08	; 8
+ 754:	90 93 6a 00 	sts	0x006A, r25
+ 758:	07 c0       	rjmp	.+14     	; 0x768 <main+0x10a>
+			break;
+			case 3:	// 3rd servo position (120 degrees)
+				switchIteration = SERVO_POSITION3;
+ 75a:	a5 e0       	ldi	r26, 0x05	; 5
+ 75c:	a0 93 6a 00 	sts	0x006A, r26
+ 760:	03 c0       	rjmp	.+6      	; 0x768 <main+0x10a>
+			break;
+			case 4:	// 4th servo position (180 degrees)
+				switchIteration = SERVO_POSITION4;
+ 762:	b3 e0       	ldi	r27, 0x03	; 3
+ 764:	b0 93 6a 00 	sts	0x006A, r27
+ 768:	2f ef       	ldi	r18, 0xFF	; 255
+ 76a:	8e e9       	ldi	r24, 0x9E	; 158
+ 76c:	94 e2       	ldi	r25, 0x24	; 36
+ 76e:	21 50       	subi	r18, 0x01	; 1
+ 770:	80 40       	sbci	r24, 0x00	; 0
+ 772:	90 40       	sbci	r25, 0x00	; 0
+ 774:	e1 f7       	brne	.-8      	; 0x76e <main+0x110>
+ 776:	00 c0       	rjmp	.+0      	; 0x778 <main+0x11a>
+ 778:	00 00       	nop
+			if (!(PINB & (1 << SSBUT_In))){
+				for (uint8_t i = 1; i < 5; i++){
+					if (Cups.positionEmpty[i - 1] == 0){
+						Servo.SetPosition(i);
+						_delay_ms(1500);
+						if (Cups.positionEmpty[i - 1] == 1){
+ 77a:	a9 81       	ldd	r26, Y+1	; 0x01
+ 77c:	ba 81       	ldd	r27, Y+2	; 0x02
+ 77e:	8c 91       	ld	r24, X
+ 780:	81 30       	cpi	r24, 0x01	; 1
+ 782:	09 f4       	brne	.+2      	; 0x786 <main+0x128>
+ 784:	57 c0       	rjmp	.+174    	; 0x834 <main+0x1d6>
+	volatile uint8_t units;
+	// flag dor dynamic indication with transistors
+	volatile uint8_t dynamicIndicationFlag;
+	// Function for getting the current volume
+	volatile uint8_t Volume(void){
+		return (tens * 10 + units);
+ 786:	d5 01       	movw	r26, r10
+ 788:	8c 91       	ld	r24, X
+ 78a:	d4 01       	movw	r26, r8
+ 78c:	9c 91       	ld	r25, X
+ 78e:	88 0f       	add	r24, r24
+ 790:	28 2f       	mov	r18, r24
+ 792:	22 0f       	add	r18, r18
+ 794:	22 0f       	add	r18, r18
+ 796:	82 0f       	add	r24, r18
+ 798:	89 0f       	add	r24, r25
+		state = 0;
+	}
+	// Function starts the pouring
+	void StartPouring(uint16_t ml, uint8_t cupIndex, MyCups* cup){
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+ 79a:	d3 01       	movw	r26, r6
+ 79c:	1c 92       	st	X, r1
+	uint8_t errorPouring;
+	// 1 is for Pouring was ended, 0 is for Pouring was not ended
+	uint8_t endPouring;
+	// Function turns the motor pump on
+	void On(void){
+		PORTB |= (1 << MOTOR_Out);
+ 79e:	c1 9a       	sbi	0x18, 1	; 24
+		// Setting state of the motor pump to 1
+		state = 1;
+ 7a0:	db 01       	movw	r26, r22
+ 7a2:	5c 92       	st	X, r5
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+		// Turning on the motor pump
+		On();
+		// Waiting till the fluid fills the volume
+		for (uint16_t pouringIterator = 0; pouringIterator < (ml * 30); pouringIterator++){
+ 7a4:	48 9e       	mul	r4, r24
+ 7a6:	90 01       	movw	r18, r0
+ 7a8:	11 24       	eor	r1, r1
+ 7aa:	21 15       	cp	r18, r1
+ 7ac:	31 05       	cpc	r19, r1
+ 7ae:	49 f1       	breq	.+82     	; 0x802 <main+0x1a4>
+			// If the cup was taken up
+			if (cup->positionEmpty[cupIndex] == 1){
+ 7b0:	a9 81       	ldd	r26, Y+1	; 0x01
+ 7b2:	ba 81       	ldd	r27, Y+2	; 0x02
+ 7b4:	8c 91       	ld	r24, X
+ 7b6:	81 30       	cpi	r24, 0x01	; 1
+ 7b8:	81 f4       	brne	.+32     	; 0x7da <main+0x17c>
+ 7ba:	06 c0       	rjmp	.+12     	; 0x7c8 <main+0x16a>
+ 7bc:	ed 81       	ldd	r30, Y+5	; 0x05
+ 7be:	fe 81       	ldd	r31, Y+6	; 0x06
+ 7c0:	00 81       	ld	r16, Z
+ 7c2:	01 30       	cpi	r16, 0x01	; 1
+ 7c4:	89 f4       	brne	.+34     	; 0x7e8 <main+0x18a>
+ 7c6:	fd 01       	movw	r30, r26
+		// Setting state of the motor pump to 1
+		state = 1;
+	}
+	// Function turns the motor pump off
+	void Off(void){
+		PORTB &= ~(1 << MOTOR_Out);
+ 7c8:	c1 98       	cbi	0x18, 1	; 24
+		// Setting state of the motor pump to 0
+		state = 0;
+ 7ca:	db 01       	movw	r26, r22
+ 7cc:	1c 92       	st	X, r1
+			// If the cup was taken up
+			if (cup->positionEmpty[cupIndex] == 1){
+				// Turning off the pump
+				Off();
+				// Setting the error flag to 1
+				errorPouring = 1;
+ 7ce:	da 01       	movw	r26, r20
+ 7d0:	5c 92       	st	X, r5
+				// Setting the fillness flag to 0
+				cup->cupFilled[cupIndex] = 0;
+ 7d2:	ab 81       	ldd	r26, Y+3	; 0x03
+ 7d4:	bc 81       	ldd	r27, Y+4	; 0x04
+ 7d6:	1c 92       	st	X, r1
+ 7d8:	14 c0       	rjmp	.+40     	; 0x802 <main+0x1a4>
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+		// Turning on the motor pump
+		On();
+		// Waiting till the fluid fills the volume
+		for (uint16_t pouringIterator = 0; pouringIterator < (ml * 30); pouringIterator++){
+ 7da:	83 2d       	mov	r24, r3
+ 7dc:	92 2d       	mov	r25, r2
+ 7de:	a9 81       	ldd	r26, Y+1	; 0x01
+ 7e0:	ba 81       	ldd	r27, Y+2	; 0x02
+ 7e2:	be 83       	std	Y+6, r27	; 0x06
+ 7e4:	ad 83       	std	Y+5, r26	; 0x05
+ 7e6:	df 01       	movw	r26, r30
+				break;
+			}
+			// If the cup is in position
+			else{
+				// Setting the error flag to 0
+				errorPouring = 0;
+ 7e8:	fa 01       	movw	r30, r20
+ 7ea:	10 82       	st	Z, r1
+ 7ec:	ef ec       	ldi	r30, 0xCF	; 207
+ 7ee:	f7 e0       	ldi	r31, 0x07	; 7
+ 7f0:	31 97       	sbiw	r30, 0x01	; 1
+ 7f2:	f1 f7       	brne	.-4      	; 0x7f0 <main+0x192>
+ 7f4:	00 c0       	rjmp	.+0      	; 0x7f6 <main+0x198>
+ 7f6:	00 00       	nop
+		// Setting endPouring to 0, means that the pouring was started
+		endPouring = 0;
+		// Turning on the motor pump
+		On();
+		// Waiting till the fluid fills the volume
+		for (uint16_t pouringIterator = 0; pouringIterator < (ml * 30); pouringIterator++){
+ 7f8:	01 96       	adiw	r24, 0x01	; 1
+ 7fa:	82 17       	cp	r24, r18
+ 7fc:	93 07       	cpc	r25, r19
+ 7fe:	f1 f6       	brne	.-68     	; 0x7bc <main+0x15e>
+ 800:	fd 01       	movw	r30, r26
+		// Setting state of the motor pump to 1
+		state = 1;
+	}
+	// Function turns the motor pump off
+	void Off(void){
+		PORTB &= ~(1 << MOTOR_Out);
+ 802:	c1 98       	cbi	0x18, 1	; 24
+		// Setting state of the motor pump to 0
+		state = 0;
+ 804:	db 01       	movw	r26, r22
+ 806:	1c 92       	st	X, r1
+			}
+		}
+		// Turning off the motor pump
+		Off();
+		// If the pouring process failed
+		if (errorPouring == 1){
+ 808:	da 01       	movw	r26, r20
+ 80a:	8c 91       	ld	r24, X
+ 80c:	81 30       	cpi	r24, 0x01	; 1
+ 80e:	21 f4       	brne	.+8      	; 0x818 <main+0x1ba>
+			// Setting the fillness flag to 0
+			cup->cupFilled[cupIndex] = 0;
+ 810:	ab 81       	ldd	r26, Y+3	; 0x03
+ 812:	bc 81       	ldd	r27, Y+4	; 0x04
+ 814:	1c 92       	st	X, r1
+ 816:	03 c0       	rjmp	.+6      	; 0x81e <main+0x1c0>
+		}
+		// If the pouring process succeeded
+		else{
+			// Setting the fillness flag to 1
+			cup->cupFilled[cupIndex] = 1;
+ 818:	ab 81       	ldd	r26, Y+3	; 0x03
+ 81a:	bc 81       	ldd	r27, Y+4	; 0x04
+ 81c:	5c 92       	st	X, r5
+		}
+		// Setting endPouring to 1, means that te pouring was ended
+		endPouring = 1;
+ 81e:	d3 01       	movw	r26, r6
+ 820:	5c 92       	st	X, r5
+ 822:	bf ef       	ldi	r27, 0xFF	; 255
+ 824:	28 e0       	ldi	r18, 0x08	; 8
+ 826:	8d e3       	ldi	r24, 0x3D	; 61
+ 828:	b1 50       	subi	r27, 0x01	; 1
+ 82a:	20 40       	sbci	r18, 0x00	; 0
+ 82c:	80 40       	sbci	r24, 0x00	; 0
+ 82e:	e1 f7       	brne	.-8      	; 0x828 <main+0x1ca>
+ 830:	00 c0       	rjmp	.+0      	; 0x832 <main+0x1d4>
+ 832:	00 00       	nop
+	_delay_ms(5000);
+	while(1){
+		if (!(PINB & (1 << SSBUT_In))){
+			_delay_ms(100);
+			if (!(PINB & (1 << SSBUT_In))){
+				for (uint8_t i = 1; i < 5; i++){
+ 834:	1f 5f       	subi	r17, 0xFF	; 255
+ 836:	31 96       	adiw	r30, 0x01	; 1
+ 838:	ab 81       	ldd	r26, Y+3	; 0x03
+ 83a:	bc 81       	ldd	r27, Y+4	; 0x04
+ 83c:	11 96       	adiw	r26, 0x01	; 1
+ 83e:	bc 83       	std	Y+4, r27	; 0x04
+ 840:	ab 83       	std	Y+3, r26	; 0x03
+ 842:	15 30       	cpi	r17, 0x05	; 5
+ 844:	09 f0       	breq	.+2      	; 0x848 <main+0x1ea>
+ 846:	69 cf       	rjmp	.-302    	; 0x71a <main+0xbc>
+ 848:	57 cf       	rjmp	.-338    	; 0x6f8 <main+0x9a>
+
+0000084a <_exit>:
+ 84a:	f8 94       	cli
+
+0000084c <__stop_program>:
+ 84c:	ff cf       	rjmp	.-2      	; 0x84c <__stop_program>
